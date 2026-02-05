@@ -1,29 +1,56 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AspirasiController;
 use App\Http\Controllers\AdminController;
 
+/*
+|--------------------------------------------------------------------------
+| HALAMAN AWAL
+|--------------------------------------------------------------------------
+*/
 
-Route::get('/', fn()=>view('welcome'));
+// Halaman pilih login
+Route::get('/', function () {
+    return view('auth.pilih-login');
+});
+
+/*
+|--------------------------------------------------------------------------
+| AUTH LOGIN
+|--------------------------------------------------------------------------
+*/
+
+// Login Siswa
+Route::get('/login-siswa', [AuthController::class,'loginSiswaForm']);
+Route::post('/login-siswa', [AuthController::class,'loginSiswa']);
+
+// Login Admin
+Route::get('/login-admin', [AuthController::class,'loginAdminForm']);
+Route::post('/login-admin', [AuthController::class,'loginAdmin']);
+
+// Logout
+Route::get('/logout', [AuthController::class,'logout']);
 
 
-Route::get('/login-siswa',[AuthController::class,'loginSiswaForm']);
-Route::post('/login-siswa',[AuthController::class,'loginSiswa']);
+/*
+|--------------------------------------------------------------------------
+| SISWA AREA
+|--------------------------------------------------------------------------
+*/
+
+Route::get('/dashboard-siswa', [AspirasiController::class,'dashboard']);
+Route::get('/form-aspirasi', [AspirasiController::class,'create']);
+Route::post('/aspirasi', [AspirasiController::class,'store']);
 
 
-Route::get('/login-admin',[AuthController::class,'loginAdminForm']);
-Route::post('/login-admin',[AuthController::class,'loginAdmin']);
+/*
+|--------------------------------------------------------------------------
+| ADMIN AREA
+|--------------------------------------------------------------------------
+*/
 
-
-Route::get('/logout',[AuthController::class,'logout']);
-
-
-Route::get('/dashboard-siswa',[AspirasiController::class,'dashboard']);
-Route::get('/form-aspirasi',[AspirasiController::class,'create']);
-Route::post('/aspirasi',[AspirasiController::class,'store']);
-
-
-Route::get('/dashboard-admin',[AdminController::class,'dashboard']);
-Route::post('/feedback',[AdminController::class,'feedback']);
-Route::get('/selesai/{id}',[AdminController::class,'selesai']);
+Route::get('/dashboard-admin', [AdminController::class,'dashboard']);
+Route::post('/feedback-admin', [AdminController::class,'feedback']);
+Route::get('/aspirasi-selesai/{id}', [AdminController::class,'selesai']);

@@ -6,7 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Aspirasi extends Model
 {
-protected $fillable = [
+    protected $primaryKey = 'id_aspirasi';
+
+    protected $fillable = [
         'judul',
         'isi_aspirasi',
         'status',
@@ -15,18 +17,17 @@ protected $fillable = [
     ];
 
     public function siswa()
-{
-    return $this->belongsTo(Siswa::class, 'id_siswa');
-}
+    {
+        return $this->belongsTo(Siswa::class, 'id_siswa');
+    }
 
-public function kategori()
-{
-    return $this->belongsTo(Kategori::class, 'id_kategori');
-}
+    public function kategori()
+    {
+        return $this->belongsTo(Kategori::class, 'id_kategori');
+    }
 
-public function umpanBalik()
-{
-    return $this->hasMany(UmpanBalik::class, 'id_aspirasi');
-}
-
+    public function umpanBalik()
+    {
+        return $this->hasMany(UmpanBalik::class, 'id_aspirasi', 'id_aspirasi');
+    }
 }
