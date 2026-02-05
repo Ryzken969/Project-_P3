@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
 use App\Models\Siswa;
 use App\Models\Admin;
 
@@ -23,7 +24,7 @@ class UserSeeder extends Seeder
         Admin::create([
             'nama_admin' => 'Admin Demo',
             'username' => 'admin',
-            'password' => 'admin123'
+            'password' => Hash::make('admin123')
         ]);
     }
 }

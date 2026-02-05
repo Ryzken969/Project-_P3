@@ -8,7 +8,21 @@
 
 <div class="bg-white p-8 rounded-xl shadow w-80">
 
-<h2 class="text-xl font-bold mb-6 text-center">Login Admin</h2>
+<h2 class="text-xl font-bold mb-6 text-center">
+Login Admin
+</h2>
+
+@if(session('error'))
+<div class="bg-red-100 text-red-700 p-2 mb-3 rounded text-sm">
+{{ session('error') }}
+</div>
+@endif
+
+@if(session('success'))
+<div class="bg-green-100 text-green-700 p-2 mb-3 rounded text-sm">
+{{ session('success') }}
+</div>
+@endif
 
 <form method="POST" action="/login-admin">
 @csrf
@@ -27,6 +41,7 @@ Login
 </button>
 
 </form>
+</p>
 
 </div>
 

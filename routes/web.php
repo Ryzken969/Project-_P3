@@ -16,22 +16,38 @@ Route::get('/', function () {
     return view('auth.pilih-login');
 });
 
+
 /*
 |--------------------------------------------------------------------------
 | AUTH LOGIN
 |--------------------------------------------------------------------------
 */
 
-// Login Siswa
+// Login siswa
 Route::get('/login-siswa', [AuthController::class,'loginSiswaForm']);
 Route::post('/login-siswa', [AuthController::class,'loginSiswa']);
 
-// Login Admin
+// Login admin
 Route::get('/login-admin', [AuthController::class,'loginAdminForm']);
 Route::post('/login-admin', [AuthController::class,'loginAdmin']);
 
 // Logout
 Route::get('/logout', [AuthController::class,'logout']);
+
+
+/*
+|--------------------------------------------------------------------------
+| REGISTER
+|--------------------------------------------------------------------------
+*/
+
+// Register siswa
+Route::get('/register-siswa', [AuthController::class,'registerSiswaForm']);
+Route::post('/register-siswa', [AuthController::class,'registerSiswa']);
+
+// Register admin
+Route::get('/register-admin', [AuthController::class,'registerAdminForm']);
+Route::post('/register-admin', [AuthController::class,'registerAdmin']);
 
 
 /*
